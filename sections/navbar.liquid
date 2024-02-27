@@ -1,0 +1,80 @@
+{{ 'application.css' | asset_url | stylesheet_tag }}
+<div class="navbar">
+  <nav class="nav">
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank %}
+        <a class="" href="{{ link.url }}">{{ link.title }}</a>
+        [{% for childlink in linklists[child_list_handle].links %}
+          <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+        {% endfor %}]
+      {% else %}
+        <a class="nav__link" href="{{ link.url }}">{{ link.title }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+  <div class="navbar__sign">
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="{{ routes.account_logout_url }}" class="navbar__sign-link navbar__sign-link--border">Sign Out</a>
+      {% else %}
+        <a href="{{ routes.account_login_url  }}" class="navbar__sign-link">Sign In</a>
+        <a href="{{ routes.account_register_url }}" class="navbar__sign-link navbar__sign-link--border">Sign Up</a>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Navbar Section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Link List Handle",
+      "id": "link_list_handle",
+      "default": "main-menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Navbar Link",
+      "settings": [
+        {
+          "type": "url",
+          "label": "Link URL",
+          "id": "link_url",
+          "default": "/"
+        },
+        {
+          "type": "text",
+          "label": "Link Title",
+          "id": "link_title",
+          "default": "Home"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "link",
+          "name": "Child Link",
+          "settings": [
+            {
+              "type": "url",
+              "label": "Link URL",
+              "id": "child_link_url",
+              "default": "/"
+            },
+            {
+              "type": "text",
+              "label": "Link Title",
+              "id": "child_link_title",
+              "default": "Child Link"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  {% endschema %}
