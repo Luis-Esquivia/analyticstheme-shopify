@@ -1,0 +1,129 @@
+:root {
+  --white-color: #fff;
+  --light-grey: #A6A6A6;
+  --medium-gray: #6C6B6A;
+  --orange-color: #D14D41;
+}
+
+#shopify-section-products {
+  width: 100%;
+  padding: 0 0 0 8px;
+}
+
+.products-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px 0px 30px 0px;
+}
+
+.product {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  justify-content: start;
+  text-align: start;
+  padding-right: 10px;
+  padding-bottom: 23px;
+  position: relative;
+  box-shadow: 0px 0px 4px 0px rgba(54, 53, 53, 0.05);
+}
+
+.product__text-container {
+  width: 180px;
+  padding: 0 0 6px 12px;
+}
+
+.product__type {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--light-grey);
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 60%;
+}
+
+.product__name {
+  color: var(--medium-gray);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product a::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.product__info {
+  display: flex;
+  gap: 39px;
+}
+
+.product__info-price {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25.14px;
+  color: #292727;
+}
+
+.product__info-detail {
+  color: var(--orange-color);
+  font-style: italic;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 4px;
+  border-radius: 4px 0px;
+  background-color: #FAEDEC;
+}
+
+.product__img-container {
+  position: relative;
+}
+
+.product__img {
+  width: 150px;
+}
+
+.product__qualification {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 4px 4px 1px 2px; 
+  color: var(--medium-gray);
+  background-color: white;
+  border-radius: 50%;
+}
+
+
+@media screen and (min-width: 1216px){
+  #shopify-section-products {
+    width: 45%;
+  }
+
+  .products-section {
+    gap: 25px;
+    padding: 20px 0px 30px 30px;
+  }
+
+  .product {
+    padding-right: 40px;
+    padding-bottom: 43px;
+  }
+
+  .product__text-container {
+    width: 204px;
+    padding: 0 0 6px 12px;
+  }
+
+  .product__img {
+    width: 204px;
+  }
+}

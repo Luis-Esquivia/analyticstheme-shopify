@@ -1,44 +1,82 @@
 {{ 'slider-collection.css' | asset_url | stylesheet_tag }}
-{{ 'slider-collection.js' | asset_url | script_tag }}
-<input type="radio" id="products__slider-first-item" class="products__slider-first-item" name="slider" checked>
-<input type="radio" id="products__slider-second-item" class="products__slider-second-item" name="slider">
+
+<input
+  type="radio"
+  id="products__slider-first-item"
+  class="products__slider-first-item"
+  name="slider"
+  checked>
+<input
+  type="radio"
+  id="products__slider-second-item"
+  class="products__slider-second-item"
+  name="slider">
 <ul class="products__slider-container">
-  <li class="slider__img-container slider__img-item--1">
-    <img src="{{ section.settings.main_image | img_url: 'master' }}" alt="" class="products__img-slider">
+  <li class="slider__img-container slider__img-container--item-1 slider__img-item--1">
+    <img
+      src="{{ section.settings.main_image | img_url: 'master' }}"
+      alt="{{ section.settings.main_image.alt }}"
+      class="products__img-slider"
+    >
   </li>
-  <li class="slider__img-container slider__img-item--2">
-    <img src="{{ section.settings.secondary_image | img_url: 'master' }}" alt="" class="products__img-slider">
+  <li class="slider__img-container slider__img-container--item-2 slider__img-item--2">
+    <img
+      loading="lazy"
+      src="{{ section.settings.secondary_image | img_url: 'master' }}"
+      alt="{{ section.settings.secondary_image.alt }}"
+      class="products__img-slider"
+    >
   </li>
-  <label for="products__slider-first-item" class="products__slider-button products__slider-button--left">
-    <svg width="24" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <label for="products__slider-first-item" role="button" tabindex="0" class="products__slider-button products__slider-button--left" aria-label="Imagen anterior">
+    <svg
+      width="24"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
       <g id="feather-icon / chevron-left">
-        <path id="Shape" d="M10.5476 12.5952L6.45236 8.49996L10.5476 4.40472" stroke="#363535" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          id="Shape"
+          d="M10.5476 12.5952L6.45236 8.49996L10.5476 4.40472"
+          stroke="#363535"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
       </g>
     </svg>
   </label>
-  <label for="products__slider-second-item" class="products__slider-button products__slider-button--right ">
-    <svg width="24" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <label for="products__slider-second-item" role="button" tabindex="0" class="products__slider-button products__slider-button--right" aria-label="Siguiente imagen">
+    <svg
+      width="24"
+      height="17"
+      viewBox="0 0 17 17"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
       <g id="feather-icon / chevron-right">
-        <path id="Shape" d="M6.45236 12.5952L10.5476 8.49996L6.45236 4.40472" stroke="#363535" stroke-width="2"stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          id="Shape"
+          d="M6.45236 12.5952L10.5476 8.49996L6.45236 4.40472"
+          stroke="#363535"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round" />
       </g>
     </svg>
   </label>
 </ul>
-
 {% schema %}
-{
-  "name": "Imágenes del Producto",
-  "settings": [
-    {
-      "type": "image_picker",
-      "label": "Imagen Principal",
-      "id": "main_image"
-    },
-    {
-      "type": "image_picker",
-      "label": "Imagen Secundaria",
-      "id": "secondary_image"
-    }
-  ]
-}
+  {
+    "name": "Imágenes del Producto",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "Imagen Principal",
+        "id": "main_image"
+      }, {
+        "type": "image_picker",
+        "label": "Imagen Secundaria",
+        "id": "secondary_image"
+      }
+    ]
+  }
 {% endschema %}
