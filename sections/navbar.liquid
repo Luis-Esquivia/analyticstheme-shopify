@@ -1,17 +1,21 @@
 {{ 'application.css' | asset_url | stylesheet_tag }}
 <div class="navbar">
   <nav class="nav">
-    {% for link in linklists.main-menu.links %}
-      {% assign child_list_handle = link.title | handleize %}
-      {% if linklists[child_list_handle].links != blank %}
-        <a class="" href="{{ link.url }}">{{ link.title }}</a>
-        [{% for childlink in linklists[child_list_handle].links %}
-          <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-        {% endfor %}]
-      {% else %}
-        <a class="nav__link" href="{{ link.url }}">{{ link.title }}</a>
-      {% endif %}
-    {% endfor %}
+    {% assign selected_menu = section.settings.selected_menu %}
+
+    {% if selected_menu != blank %}
+      {% for link in selected_menu.links %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <a class="" href="{{ link.url }}">{{ link.title }}</a>
+          [{% for childlink in linklists[child_list_handle].links %}
+            <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+          {% endfor %}]
+        {% else %}
+          <a class="nav__link" href="{{ link.url }}">{{ link.title }}</a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </nav>
   <div class="navbar__sign">
     {% if shop.customer_accounts_enabled %}
@@ -26,55 +30,14 @@
 </div>
 
 {% schema %}
-{
-  "name": "Navbar Section",
-  "settings": [
-    {
-      "type": "text",
-      "label": "Link List Handle",
-      "id": "link_list_handle",
-      "default": "main-menu"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "link",
-      "name": "Navbar Link",
-      "settings": [
-        {
-          "type": "url",
-          "label": "Link URL",
-          "id": "link_url",
-          "default": "/"
-        },
-        {
-          "type": "text",
-          "label": "Link Title",
-          "id": "link_title",
-          "default": "Home"
-        }
-      ],
-      "blocks": [
-        {
-          "type": "link",
-          "name": "Child Link",
-          "settings": [
-            {
-              "type": "url",
-              "label": "Link URL",
-              "id": "child_link_url",
-              "default": "/"
-            },
-            {
-              "type": "text",
-              "label": "Link Title",
-              "id": "child_link_title",
-              "default": "Child Link"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-  {% endschema %}
+  {
+    "name": "Menu",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "selected_menu",
+        "label": "Select Menu"
+      }
+    ]
+  }
+{% endschema %}
