@@ -1,0 +1,43 @@
+{{ 'categories.css' | asset_url | stylesheet_tag }}
+<h2 class="categories__title">Categorías para ti</h2>
+<div class="categories__container">
+  <div class="categories__wrapper">
+    {% for block in section.blocks %}
+      <div class="category">
+        <div class="category__image">
+          <img
+            src="{{ block.settings.collection.image | image_url: width: 294, height: 154  }}"           
+            alt="{{ block.settings.collection.title }}">
+        </div>
+        <div class="category__info">
+          <a
+            href="{{ block.settings.collection.url }}"
+            aria-label="Ver Categoria {{ block.settings.collection.title }}"
+            class="category__info-link">{{ block.settings.collection.title }}</a>
+          {% render 'arrow-right' %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Categorias",
+    "tag": "section",
+    "class": "categories",
+    "blocks": [
+      {
+        "name": "Categories",
+        "type": "collection",
+        "settings": [
+          {
+            "type": "collection",
+            "label": "Categoria",
+            "id": "collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

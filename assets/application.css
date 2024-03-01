@@ -5,7 +5,6 @@
   --text-secondary: #8794BA;
   --font-main: "Roboto", sans-serif;
   --bg-main: #F5F5F5;
-
 }
 
 * {
@@ -70,8 +69,18 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin-top: 45px;
-/*   background-color: #172755; */
   padding: 10px 0;
+}
+
+.categories {
+  padding: 0px 10px;
+}
+
+.categories__title {
+  font-size: 24px;
+  letter-spacing: -1%;
+  font-weight: 700;
+  color: #363535;
 }
 
 @media screen and (min-width: 1408px) {
@@ -106,4 +115,7 @@ body {
     margin: 0;
   }
   
+  .categories {
+    padding: 0px 39px;
+  }
 }
