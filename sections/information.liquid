@@ -1,0 +1,55 @@
+{{ 'information.css' | asset_url | stylesheet_tag }}
+<div class="container container--information">
+  {% for block in section.blocks %}
+    <div class="information__card">
+      <div class="information__card-icon">
+        {% if block.settings.icon %}
+          <img src="{{ block.settings.icon | image_url: width: 100, height: 100 }}" alt="{{ block.settings.title }}">
+        {% endif %}
+      </div>
+      <div class="information__card-container">
+        <p class="information__card-text">{{ block.settings.text }}</p>
+        <a href="{{ block.settings.link }}" class="information__card-link">{{ block.settings.link_text }}</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Information",
+    "tag": "section",
+    "class": "information",
+    "blocks": [
+      {
+        "name": "Information Card",
+        "type": "section",
+        "limit": 4,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon (45x51 pixels)"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text",
+            "default": "Saber más"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
