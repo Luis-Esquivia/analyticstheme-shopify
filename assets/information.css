@@ -14,6 +14,7 @@
   padding: 44px 10px;
   gap: 10px;
   margin: 40px 0px;
+  justify-content: space-around;
 }
 
 .information__card {
@@ -23,7 +24,7 @@
 
 .information__card-icon {
   background-color: var(--light-orange);
-  padding: 25px 16px;
+  padding: 25px 6px;
   border-radius: 12px;
 }
 
@@ -79,5 +80,9 @@
 
   .information__card:last-child {
     border-right: none;
+  }
+
+  .information__card-icon {
+    padding: 25px 16px;
   }
 }
