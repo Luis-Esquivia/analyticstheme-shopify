@@ -1,0 +1,146 @@
+{{ 'popular-products.css' | asset_url | stylesheet_tag }}
+<h3 class="title title--popular-products">{{ section.settings.title }}</h3>
+<div class="popular-products__container">
+  <div class="product-block">
+    {% for block in section.blocks %}
+      <div class="product-block__container">
+        <div class="product-block__img-container">
+          <img
+            src="{{ block.settings.product.images[0] | image_url: width: 145, height: 115 }}"
+            alt="{{ block.settings.product.title }}"
+            class="product-block__img">
+          {% if block.settings.product.metafields.custom.informative_item %}
+            <p class="product-block__metadata {% if block.settings.product.metafields.custom.informative_item == 'solo web' %}product-block__metadata--green{% endif %}">
+              {{ block.settings.product.metafields.custom.informative_item }}
+            </p>
+          {% endif %}
+        </div>
+        <a
+          href="{{ block.settings.product.url }}"
+          class="product-block__name"
+          aria-label="Ver producto {{ block.settings.product.title }}">{{ block.settings.product.title }}</a>
+        <div class="product-block__detail-container">
+          <div class="product-block__detal-price-container">
+            <p class="product-block__price">{{ block.settings.product.price | money }}</p>
+            {% if block.settings.product.compare_at_price > block.settings.product.price %}
+              <p class="product-block__price-comparation">{{ block.settings.product.compare_at_price | money }}</p>
+            {% endif %}
+          </div>
+          <p class="product-block__detail-calification">
+            {% render 'star-icon' %} 5
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="popular-product__outstanding">
+    <div class="product-outstanding__img-container">
+      <div class="product-outstanding__delivery">
+        <p class="product-outstanding__delivery-text product-outstanding__delivery-text--opacity">
+          <svg
+            width="23"
+            height="18"
+            viewBox="0 0 23 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M1.3535 16.9621C1.52586 17.0498 1.72849 17.0966 1.93577 17.0966C2.07342 17.0967 2.20974 17.0761 2.33691 17.036C2.46409 16.9959 2.57961 16.937 2.67683 16.8628L11.6182 10.0513L20.5595 16.8628C20.6567 16.937 20.7723 16.9959 20.8994 17.036C21.0266 17.0761 21.1629 17.0967 21.3006 17.0966C21.5078 17.0966 21.7105 17.0498 21.8828 16.9621C22.0552 16.8744 22.1895 16.7497 22.2689 16.6038C22.3482 16.4579 22.3689 16.2974 22.3285 16.1425C22.288 15.9876 22.1882 15.8454 22.0416 15.7337L13.1003 8.92225L22.0417 2.11074C22.2382 1.96101 22.3486 1.75794 22.3486 1.5462C22.3486 1.33445 22.2382 1.13138 22.0417 0.981658C21.8451 0.831933 21.5786 0.747818 21.3006 0.747818C21.0227 0.747818 20.7561 0.831933 20.5596 0.981658L11.6182 7.79318L2.67682 0.981658C2.48028 0.831933 2.21371 0.747818 1.93576 0.747818C1.65781 0.747818 1.39124 0.831933 1.1947 0.981658C0.998157 1.13138 0.887741 1.33445 0.887741 1.5462C0.887741 1.75794 0.998157 1.96101 1.1947 2.11074L10.1361 8.92225L1.19471 15.7337C1.04812 15.8454 0.94829 15.9876 0.907841 16.1425C0.867392 16.2974 0.888144 16.4579 0.967472 16.6038C1.0468 16.7497 1.18114 16.8744 1.3535 16.9621Z"
+              fill="#D8D8D8" />
+          </svg>
+          Envío a</p>
+        <p class="product-outstanding__delivery-text">
+          <svg
+            width="23"
+            height="13"
+            viewBox="0 0 23 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.0342 0.459942C21.6152 0.140692 20.9358 0.140692 20.5167 0.459942L7.6612 10.2535L2.71974 6.48907C2.30071 6.16982 1.62135 6.16985 1.20224 6.48907C0.783173 6.80829 0.783173 7.32583 1.20224 7.64508L6.90245 11.9875C7.32135 12.3067 8.00121 12.3065 8.41994 11.9875L22.0342 1.61599C22.4533 1.29677 22.4533 0.779193 22.0342 0.459942Z" fill="#05B999" />
+          </svg>
+          Retiro e</p>
+      </div>
+      {% if section.settings.outstanding_product %}
+        <img
+          src="{{ section.settings.outstanding_product.images[0] | image_url: width: 240, height: 215 }}"
+          alt="{{ section.settings.outstanding_product.title }}"
+          class="product-outstanding__img">
+      {% endif %}
+      {% render 'star-icon' %} 4
+    </div>
+    {% if section.settings.outstanding_product %}
+      <p class="product-outstanding__vendor">{{ section.settings.outstanding_product.vendor }}</p>
+    {% endif %}
+    {% if section.settings.outstanding_product %}
+      <a
+        href="{{ section.settings.outstanding_product.url }}"
+        class="product-outstanding__name"
+        aria-label="Ver producto {{ section.settings.outstanding_product.title }}">{{ section.settings.outstanding_product.title }}</a>
+    {% endif %}
+    <div class="product-outstanding__price-container">
+      {% if section.settings.outstanding_product %}
+        <p class="product-outstanding__price">{{ section.settings.outstanding_product.price | money }}</p>
+      {% endif %}
+      {% render 'entrega-hoy' block_class: 'product__info-detail--popular-product' %}
+    </div>
+    <div class="product-outstanding__view-button-container">
+      <a href="{{ section.settings.outstanding_product.url }}" class="product-outstanding__view-button">
+        Ver producto
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 17 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M2.72266 8.30835H13.3893"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path
+            d="M9.38916 4.30835L13.3892 8.30835L9.38916 12.3083"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Popular products ",
+    "tag": "section",
+    "class": "popular-products",
+
+    "settings": [
+      {
+        "type": "text",
+        "label": "Section Title",
+        "id": "title"
+      }, {
+        "type": "product",
+        "label": "Outstanding Product",
+        "id": "outstanding_product"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Product",
+        "type": "product",
+        "limit": 6,
+        "settings": [
+          {
+            "type": "product",
+            "label": "Product",
+            "id": "product"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

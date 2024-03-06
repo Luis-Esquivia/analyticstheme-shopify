@@ -1,4 +1,6 @@
-<span class="product__info-detail">
+{% assign render_popular_product = block_class | default: blank %}
+
+<span class="product__info-detail {{ render_popular_product }} ">
   <svg width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M5.29688 0.623047C4.7153 0.623047 4.24219 1.09616 4.24219 1.67773V2.05273L4.94531 2.4043H5.29688H5.64844L6.35156 2.05273V1.67773C6.35156 1.09616 5.87845 0.623047 5.29688 0.623047Z"
