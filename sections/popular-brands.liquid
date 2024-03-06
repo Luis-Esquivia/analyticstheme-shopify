@@ -1,0 +1,51 @@
+{{ 'popular-brands.css' | asset_url | stylesheet_tag }}
+<div class="container">
+  <h4 class="title title--popular-brands">{{ section.settings.title }}</h4>
+</div>
+
+<div class="popular-brands__container">
+  <div class="container ">
+    <div class="popular-brand">
+      {% for block in section.blocks %}
+        <img
+          src="{{ block.settings.marca | image_url: width: 182, height: 121 }}"
+          alt="{{ block.settings.brand_name }}"
+          class="popular-brand__img" width="182" height="121">
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Marcas Populares",
+    "tag": "section",
+    "class": "popular-brands",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Section Title",
+        "id": "title"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Marca",
+        "type": "image",
+        "limit": 5,
+        "settings": [
+          {
+            "type": "image_picker",
+            "label": "Marca",
+            "id": "marca"
+          },
+          {
+            "type": "text",
+            "id": "brand_name",
+            "label": "Nombre de la marca"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
