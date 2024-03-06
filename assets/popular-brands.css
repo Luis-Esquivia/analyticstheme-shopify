@@ -1,0 +1,32 @@
+.popular-brands__container {
+  background-color: #EEEEF6;
+}
+
+.popular-brand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.title--popular-brands {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1%;
+  margin: 42px 0px 28px 10px;
+}
+
+@media screen and (min-width: 1216px){
+  .title--popular-brands {
+    margin: 42px 0px 28px 60px;
+  }
+
+  .popular-brand {
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0px;
+  }
+
+  .popular-brand__img {
+    width: 200px;
+  }
+}
