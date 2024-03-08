@@ -14,7 +14,7 @@
 }
 
 .collection__info {
-  padding: 38px 14px 38px 30px;
+  padding: 38px 44px 38px 30px;
 }
 
 .collection__info-subtitle {
@@ -97,5 +97,9 @@
 
   .collection__info-link {
     padding: 20px 78px;
+  }
+
+  .collection__info {
+    padding: 38px 14px 38px 30px;
   }
 }
