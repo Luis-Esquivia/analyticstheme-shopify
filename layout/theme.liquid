@@ -1,25 +1,41 @@
 <!doctype html>
 <html>
-<head>
-  <title>{{ page_title }}</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="description" content="{{ page_description | escape }}">
-  <link rel="canonical" href="{{ canonical_url }}">
-  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="/assets/header.css.liquid">
-  {{ content_for_header }} <!-- Header hook for plugins -->
-  {{ 'application.css' | asset_url | stylesheet_tag }}
-  {{ 'application.js' | asset_url | script_tag }}
-</head>
-<body>
-  {% render 'header' %}
-  {% section 'navbar' %}
-  
-  <main role="main">
-    {{ content_for_layout }}
-  </main>
+  <head>
+    <title>{{ page_title }}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="{{ page_description | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/assets/header.css.liquid">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  {% section 'footer' %}
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module">
+        import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+
+        const swiper = new Swiper(...)
+    </script>
+  {{ content_for_header }}
+    <!-- Header hook for plugins -->
+    {{ 'application.css' | asset_url | stylesheet_tag }}
+    {{ 'application.js' | asset_url | script_tag }}
+  </head>
+  <body>
+    {% render 'header' %}
+    {% section 'navbar' %}
+    {%- if settings.show_breadcrumb_nav -%}
+      {% render "breadcrumbs.liquid" %}
+    {%- endif -%}
+    <main role="main">
+
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+  </body>
 </html>
