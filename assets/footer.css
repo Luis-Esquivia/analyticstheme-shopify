@@ -22,6 +22,7 @@ footer {
 }
 
 .footer__items {
+  align-items: center;
   display: flex;
   border-top: 1px solid rgba(42, 64, 124, 1);
   padding-top: 69px;
