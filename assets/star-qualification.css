@@ -1,0 +1,17 @@
+.star-qualification {
+  display: flex;
+  gap: 1px;
+  align-items: center;
+}
+
+.star-qualification__number {
+  color: rgba(108, 107, 106, 1);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+@media screen and (min-width: 1216px){ 
+  .star-qualification {
+    gap: 6px;
+  }
+}
