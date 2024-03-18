@@ -1,0 +1,263 @@
+{{ 'slider-products.css' | asset_url | stylesheet_tag }}
+<div class="container">
+  <p class="slider-products__title">Te podrian interesar</p>
+</div>
+<div class="slider-products">
+  <div class="container">
+    <div class="slider-product__container">
+      <div class="swiper-button">
+        <svg
+          width="22"
+          class="swiper-button-prev js-swiper-button-prev"
+          height="23"
+          viewBox="0 0 22 23"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g id="feather-icon / chevron-left">
+            <path
+              id="Shape"
+              d="M13.3904 16.9471L8.05176 11.6085L13.3904 6.26984"
+              stroke="#363535"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round" />
+          </g>
+        </svg>
+      </div>
+      <div class="swiper js-swiper">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="swiper-slide">
+              <div class="slider-product">
+                <div class="slider-product-img-container">
+                  <img
+                    src="{{ block.settings.product.images[0] | img_url: 'master' }}"
+                    width="204"
+                    alt="{{ block.settings.product.title }}"
+                    class="slider-product__product-img">
+                  <p class="slider-product__qualification">
+                    {% render 'star-icon' %} 5
+                  </p>
+                </div>
+                <div class="slider-product__text-info">
+                  <div class="slider-product__text">
+                    <span class="slider-product__type">{{ block.settings.product.vendor }}</span>
+                    <div class="slider-product__name-container">
+                      <a
+                        href="{{ block.settings.product.url }}"
+                        class="slider-product__name"
+                        aria-label="Ver producto {{ block.settings.product.title }}">{{ block.settings.product.title }}</a>
+                    </div>
+                  </div>
+
+                  <div class="slider-product__info">
+                    <p class="slider-product__info-price">{{ block.settings.product.price | money }}</p>
+                  </div>
+                </div>
+                <div class="slider-product__availability">
+                  {% if block.settings.product.metafields.custom.domicilio_disponible %}
+                    <p class="product__availability">
+                      {% if block.settings.product.metafields.custom.domicilio_disponible == 'disponible' %}
+                        <svg
+                          width="13"
+                          height="10"
+                          viewBox="0 0 13 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M11.7912 1.42328L4.45784 8.75661L1.12451 5.42328"
+                            stroke="#05B999"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                        Envío a domicilio
+                      {% else %}
+                        <p class="product__availability--no-availability">
+                          <svg
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12.7314 4.75659L4.73145 12.7566"
+                              stroke="#D8D8D8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+                            <path
+                              d="M4.73145 4.75659L12.7314 12.7566"
+                              stroke="#D8D8D8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+                          </svg>
+                          Envío a domicilio
+                        </p>
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                  {% if block.settings.product.metafields.custom.tienda_disponible %}
+                    <p class="product__availability">
+                      {% if block.settings.product.metafields.custom.tienda_disponible == 'disponible' %}
+                        <svg
+                          width="13"
+                          height="10"
+                          viewBox="0 0 13 10"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M11.7912 1.42328L4.45784 8.75661L1.12451 5.42328"
+                            stroke="#05B999"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        </svg>
+                        Retiro en tienda
+                      {% else %}
+                        <p class="product__availability--no-availability">
+                          <svg
+                            width="17"
+                            height="17"
+                            viewBox="0 0 17 17"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12.7314 4.75659L4.73145 12.7566"
+                              stroke="#D8D8D8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+                            <path
+                              d="M4.73145 4.75659L12.7314 12.7566"
+                              stroke="#D8D8D8"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round" />
+                          </svg>
+                          Retiro en tienda
+                        </p>
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                  {% if block.settings.product.metafields.custom.disponibilidad %}
+                    {% render 'entrega-hoy' block_class: 'product__info-detail--slider-products' %}
+                  {% endif %}
+                </div>
+
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+       
+      </div>
+      <div class="swiper-button">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="swiper-button-next js-swiper-button-next"
+          width="22"
+          height="23"
+          viewBox="0 0 22 23"
+          fill="none">
+          <path
+            d="M8.19708 16.9471L13.5357 11.6085L8.19708 6.26984"
+            stroke="#363535"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const swiper = new Swiper('.js-swiper', {
+    navigation: {
+      nextEl: '.js-swiper-button-next',
+      prevEl: '.js-swiper-button-prev'
+    },
+    slidesPerView: 5,
+    spaceBetween: 10,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+
+    loop: true, 
+    loopedSlides: 35, 
+
+    breakpoints: {
+      300: {
+        slidesPerView: 2,
+        spaceBetween: 8,
+      },
+      400: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      680: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      },
+      920: {
+        slidesPerView: 4,
+        spaceBetween: 30,
+      },
+
+      1240: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+
+      1410: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+
+      1420: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+
+      1430: {
+        slidesPerView: 5,
+        spaceBetween: 22,
+      },
+
+      1460: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+
+      1490: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      }
+    }
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Products Slider",
+    "tag": "section",
+    "blocks": [
+      {
+        "name": "Product",
+        "type": "product",
+        "limit": 10,
+        "settings": [
+          {
+            "type": "product",
+            "label": "Product",
+            "id": "product"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

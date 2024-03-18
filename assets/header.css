@@ -5,9 +5,13 @@
 
 header {
   background-color: var(--bg-color);
+}
+
+.header {
+  background-color: var(--bg-color);
   display: flex;
   justify-content: center;
-  padding: 10px 0px;
+  padding: 40px 1px 10px 1px;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -17,12 +21,14 @@ header {
   width: 100%;
   justify-content: center;
   margin-top: 10px;
+  padding: 0 20px;
 }
 
 .header__seeker-input {
   padding: 12px 20px;
   border-radius: 8px 0px 0px 8px;
   border-style: none;
+  width: 100%;
 }
 
 .sr-only {
@@ -62,6 +68,7 @@ header {
 .menu__item-title {
   display: flex;
   gap: 7px;
+  align-items: center;
 }
 
 .menu__item-text {
@@ -99,8 +106,8 @@ header {
 }
 
 @media screen and (min-width: 1216px){
-  header {
-    padding: 50px 190px;
+  .header {
+    padding: 50px 150px;
     justify-content: space-between;
     gap: 0px;
   }
@@ -108,6 +115,7 @@ header {
   .header__seeker {
     width: 38%;
     margin-top: 0px;
+    padding: 0;
   }
 
   .header__seeker-input {
